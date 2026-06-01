@@ -1,24 +1,4 @@
-<?php
-?><!doctype html>
-<html lang="it">
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Gattile</title>
-    <link rel="stylesheet" href="css/stile.css">
-</head>
-<body>
-<header>
-    <div class="container">
-        <h1>Gattile</h1>
-        <nav>
-            <a href="index.php">Home</a>
-            <a href="adozioni.php">Adozioni</a>
-            <a href="volontariato.php">Volontariato</a>
-            <a href="registrazione.php">Registrati</a>
-            <a href="login.php">Login</a>
-        </nav>
-    </div>
+
 <?php
 if (session_status() === PHP_SESSION_NONE) {
     session_start();

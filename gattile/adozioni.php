@@ -47,8 +47,3 @@ include 'header.php';
 
 <?php include 'footer.php'; ?>
 
-<section>
-    <h2>Adozioni</h2>
-    <p>Elenco gatti in adozione.</p>
-</section>
-<?php require_once 'footer.php'; ?>
