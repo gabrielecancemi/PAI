@@ -1,0 +1,8 @@
+Sostituisci il nome del file inserendo la tua matricola reale (es. s_293847.txt).
+
+index.php
+login.php,form:formLogin,text:username,password:password,checkbox:remember,submit:btnLoginSubmit
+registrazione.php,form:formRegistrazione,text:nome,text:cognome,text:indirizzo,text:username,password:password,password:conf_password,submit:btnInviaReg,reset:btnAnnullaReg
+inserimento.php,form:formGatto,text:nome,textarea:descrizione,number:peso,text:colore_mantello,text:lunghezza_pelo,text:razza,text:colore_occhi,number:eta,select:sesso,date:data_arrivo,submit:btnSalvaGatto
+adozioni.php,form:formPrenotazioneVisita,datetime-local:data_ora_visita,submit:btnInviaVisita
+volontariato.php,form:formVolontariato,checkbox:turni,submit:btnSalvaVolontariato

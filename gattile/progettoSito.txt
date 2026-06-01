@@ -1,0 +1,47 @@
+========================================================================
+RELAZIONE DI PROGETTO: APPLICAZIONE WEB GATTILE MUNICIPIALE (AA 2025-2026)
+========================================================================
+
+1. ARCHITETTURA E COMUNICAZIONE TRA MODULI
+L'applicazione fa uso di una struttura ibrida bilanciata:
+- I moduli React gestiscono l'interazione fluida e dinamica legata alla ricerca
+	e catalogazione visiva dei gatti. I filtri avvengono istantaneamente sul client
+	senza indurre continui refresh di pagina, assecondando pienamente il principio di 
+	usabilità euristica (Controllo ed Efficienza dei sistemi).
+- I form transazionali (prenotazioni e turni) e le relative chiamate asincrone di
+	scrittura sono scritti in Vanilla JavaScript.
+- Comunicazione tramite CustomEvent: Per sincronizzare i due moduli disaccoppiati,
+	il componente React solleva un CustomEvent denominato 'gattiSelezionatiCambiati'
+	iniettando nel payload ('detail') l'elenco dei gatti selezionati. Lo script 
+	Vanilla JS si pone in ascolto sul nodo globale 'document' intercettando le modifiche, 
+	aggiornando i badge HTML e validando la sottomissione.
+
+2. SEPARAZIONE DEI PRIVILEGI SUL DATABASE
+A livello di backend, ogni script istanzia la connessione PDO richiedendo unicamente
+l'utente MySQL strettamente idoneo all'operazione da compiere (Principio del Minimo Privilegio):
+- 'lecture': Utilizzato nelle letture asincrone pubbliche dei gatti (api/gatti.php)
+	e in Home Page. Non ha permessi di inserimento o modifica.
+- 'modifier': Adoperato per gestire le transazioni complesse (api/turni.php e api/prenota.php)
+	nonché l'inserimento amministrativo delle schede (inserimento.php).
+- 'registrator': Ha unicamente diritti di INSERT sulla tabella utenti (registrazione.php). 
+	Se un utente malevolo dovesse scovare una vulnerabilità nella pagina di registrazione, 
+	non disporrebbe in ogni caso dei privilegi per effettuare interrogazioni o leak di password.
+
+3. ACCESSIBILITÀ, STRUTTURA SEMANTICA E STAMPA
+L'applicazione è stata sviluppata ponendo massima cura ai vincoli W3C ed euristici:
+- Riduzione drastica dei tag <div> a favore della ricca semantica HTML5: si fa largo uso di
+	<main>, <section>, <article>, <figure>, <figcaption>, <nav>, <header>, <footer> e <time>.
+- Tutti i controlli dei form usano <label for="..."> garantendo la compatibilità con screen reader.
+- Assenza totale di stili in formato inline o di blocchi <style> interni. Tutto il layout è
+	centralizzato nel foglio di stile 'stile.css'.
+- Il layout è gestito in CSS Grid con aree nominate ('grid-template-areas'). Su schermi ridotti
+	le aree collassano in modalità colonna singola per garantire la responsività.
+- Inclusione delle regole '@media print' per formattare la pagina per la stampa cartacea, nascondendo 
+	bottoni e menu di navigazione e forzando l'interruzione di pagina corretta con 'page-break-inside: avoid'.
+
+4. PREVENZIONE DELLE RACE CONDITIONS (CONCORRENZA)
+Per la gestione dei turni dei volontari (limite massimo di 2 persone per fascia), l'api di backend
+'api/turni.php' apre una transazione di isolamento atomica ('beginTransaction()'). Prima di validare 
+la scrittura esegue un controllo di conteggio lato server. Qualora due utenti inviassero la richiesta
+nello stesso istante per l'ultimo posto disponibile, la transazione del secondo utente fallirà in modo 
+controllato, eseguendo un 'rollBack()' ed emettendo un errore JSON esplicito catturato dal client.
