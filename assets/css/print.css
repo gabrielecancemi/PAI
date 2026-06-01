@@ -1,0 +1,100 @@
+@media print{
+
+    /* =========================
+       ELEMENTI INUTILI SU CARTA
+    ========================= */
+
+    .skip-link,
+    nav,
+    button,
+    form{
+
+        display:none;
+    }
+
+    /* =========================
+       PAGINA
+    ========================= */
+
+    body{
+
+        background:white;
+
+        color:black;
+
+        font-size:12pt;
+    }
+
+    /* =========================
+       LINK
+    ========================= */
+
+    a{
+
+        color:black;
+
+        text-decoration:none;
+    }
+
+    a::after{
+
+        content:" (" attr(href) ")";
+    }
+
+    /* =========================
+       IMMAGINI
+    ========================= */
+
+    img{
+
+        max-width:100%;
+
+        height:auto;
+    }
+
+    /* =========================
+       SEZIONI
+    ========================= */
+
+    section{
+
+        break-inside:avoid;
+
+        page-break-inside:avoid;
+    }
+
+    /* =========================
+       TITOLI
+    ========================= */
+
+    h1,
+    h2,
+    h3{
+
+        page-break-after:avoid;
+    }
+
+    /* =========================
+       CARD
+    ========================= */
+
+    .cat-card{
+
+        border:1px solid black;
+
+        margin-bottom:1rem;
+    }
+
+    /* =========================
+       FOOTER
+    ========================= */
+
+    footer{
+
+        border-top:1px solid black;
+
+        margin-top:2rem;
+
+        padding-top:1rem;
+    }
+}
