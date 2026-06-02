@@ -71,10 +71,13 @@
     </small>
 
 </footer>
-<script src="js/validazione.js"></script>
-<script src="js/volontariato.js"></script>
-<script src="js/visite.js"></script>
 
+<a href="faq.php"
+   class="faq-button"
+   aria-label="Domande frequenti"
+   title="Domande frequenti">
+    ?
+</a>
 
 </body>
 

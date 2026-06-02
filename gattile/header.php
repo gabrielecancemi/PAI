@@ -26,54 +26,87 @@ $pageTitle = $pageTitles[$currentPage] ?? 'Gattile ';
     <meta name="author" content="Gabriele Cancemi">
     <meta name="description" content="Gattile Municipale - Rifugio e Adozioni">
     <meta name="keywords" content="gattile, rifugio, adozioni, gatti, volontariato">
+
     <title><?= $pageTitle ?></title>
+
     <link rel="stylesheet" href="css/stile.css">
     <link rel="icon" href="img/logo.png" type="image/png">
+
     <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
     <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+    <script src="js/validazione.js"></script>
+    <script src="js/volontariato.js"></script>
+    <script src="js/visite.js"></script>
+    <!-- Gestione del menu mobile -->
     <script src="js/menu.js" defer></script>
 </head>
 
 <body>
+
     <header class="header" role="banner">
 
+        <!-- Logo sempre cliccabile per tornare alla home -->
         <a href="index.php" class="brand-logo" aria-label="Torna alla Home Page">
             <img src="img/logo.png" alt="" class="logo-img">
-            <p for="brand-logo">Gattile San Paolo</p>
+            <p>Gattile San Paolo</p>
         </a>
+
+        <!-- Pulsante hamburger mostrato solo su schermi piccoli -->
         <button class="menu-toggle" aria-expanded="false" aria-controls="menu-principale" aria-label="Apri menu">
             ☰
         </button>
-        <nav aria-label="Menu principale di navigazione">
-            <ul>
-                <li><a href="index.php" class="<?= $currentPage === 'index.php' ? 'active' : '' ?>">Home</a></li>
 
-                <li><a href="adozioni.php" class="<?= $currentPage === 'adozioni.php' ? 'active' : '' ?>">
+        <nav id="menu-principale" aria-label="Menu principale di navigazione">
+            <ul>
+                <li>
+                    <a href="index.php" class="<?= $currentPage === 'index.php' ? 'active' : '' ?>">
+                        Home
+                    </a>
+                </li>
+
+                <li>
+                    <a href="adozioni.php" class="<?= $currentPage === 'adozioni.php' ? 'active' : '' ?>">
                         Adotta un gatto
-                    </a></li>
-                <li><a href="volontariato.php" class="<?= $currentPage === 'volontariato.php' ? 'active' : '' ?>">
+                    </a>
+                </li>
+
+                <li>
+                    <a href="volontariato.php" class="<?= $currentPage === 'volontariato.php' ? 'active' : '' ?>">
                         Diventa Volontario
-                    </a></li>
+                    </a>
+                </li>
+
+                <!-- Voce visibile solo agli amministratori -->
                 <?php if (!empty($_SESSION['is_admin'])): ?>
-                    <li><a href="inserimento.php" class="<?= $currentPage === 'inserimento.php' ? 'active' : '' ?>">
+                    <li>
+                        <a href="inserimento.php" class="<?= $currentPage === 'inserimento.php' ? 'active' : '' ?>">
                             Aggiungi Gatto
-                        </a></li>
+                        </a>
+                    </li>
                 <?php endif; ?>
             </ul>
         </nav>
+
         <section class="stato-autenticazione" id="userStatusBox">
+
             <article class="account-box">
+
                 <?php if (isset($_SESSION['username'])): ?>
+
+                    <!-- Informazioni utente autenticato -->
                     <p class="utente-info">
                         👤
                         <strong><?= $_SESSION['username'] ?></strong>
+
                         <?php if (!empty($_SESSION['is_admin'])): ?>
                             <small class="badge-gatto">Amministratore</small>
                         <?php else: ?>
                             <small class="badge-gatto">Utente</small>
                         <?php endif; ?>
                     </p>
+
                     <ul class="azioni-account">
                         <li>
                             <a href="logout.php" class="btn-account btn-logout">
@@ -81,11 +114,15 @@ $pageTitle = $pageTitles[$currentPage] ?? 'Gattile ';
                             </a>
                         </li>
                     </ul>
+
                 <?php else: ?>
+
+                    <!-- Azioni disponibili per utenti non autenticati -->
                     <p class="utente-info">
                         Stato:
                         <em>non loggato</em>
                     </p>
+
                     <ul class="azioni-account">
                         <li>
                             <a href="login.php"
@@ -93,6 +130,7 @@ $pageTitle = $pageTitles[$currentPage] ?? 'Gattile ';
                                 Accedi
                             </a>
                         </li>
+
                         <li>
                             <a href="registrazione.php"
                                 class="btn-account btn-login <?= $currentPage === 'registrazione.php' ? 'active' : '' ?>">
@@ -100,8 +138,11 @@ $pageTitle = $pageTitles[$currentPage] ?? 'Gattile ';
                             </a>
                         </li>
                     </ul>
+
                 <?php endif; ?>
+
             </article>
 
         </section>
+
     </header>

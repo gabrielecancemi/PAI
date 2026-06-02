@@ -17,7 +17,7 @@
    GENERALI
 ========================================================== */
 
-*{
+* {
     box-sizing: border-box;
 }
 
@@ -142,6 +142,8 @@ body {
     color: var(--bianco);
 }
 
+
+
 /* ==========================================================
    AREA ACCOUNT
 ========================================================== */
@@ -209,6 +211,10 @@ body {
     color: var(--bianco);
     font-size: 2rem;
     cursor: pointer;
+}
+
+.menu-toggle:hover {
+    background-color: rgba(255, 255, 255, .15);
 }
 
 /* ==========================================================
@@ -287,14 +293,49 @@ body {
 }
 
 /* ==========================================================
+   BOTTONE FAQ
+========================================================== */
+
+.faq-button {
+    position: fixed;
+    right: max(1rem, env(safe-area-inset-right));
+    bottom: max(1rem, env(safe-area-inset-bottom));
+    width: 3.5rem;
+    height: 3.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background-color: var(--secondario);
+    color: var(--bianco);
+    text-decoration: none;
+    font-size: 1.5rem;
+    font-weight: bold;
+    border: 3px solid var(--primario);
+    z-index: 999;
+    transition:
+        transform .2s ease,
+        filter .2s ease;
+}
+
+.faq-button:hover,
+.faq-button:focus-visible {
+    filter: brightness(1.1);
+    transform: scale(1.05);
+}
+
+.faq-button:hover {
+    filter: brightness(1.1);
+    transform: scale(1.05);
+}
+
+
+
+/* ==========================================================
    ACCESSIBILITÀ
 ========================================================== */
 
-.brand-logo:focus-visible,
-.header nav a:focus-visible,
-.footer nav a:focus-visible,
-.footer-info a:focus-visible,
-.btn-account:focus-visible {
+:focus-visible {
     outline: 3px solid gold;
     outline-offset: 3px;
 }
@@ -413,6 +454,12 @@ body {
     .stato-autenticazione.aperto {
         width: 100%;
     }
+
+    .faq-button {
+        width: 4rem;
+        height: 4rem;
+        font-size: 1.7rem;
+    }
 }
 
 /* ==========================================================
@@ -429,4 +476,3 @@ body {
         scroll-behavior: auto !important;
     }
 }
-

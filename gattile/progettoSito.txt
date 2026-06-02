@@ -45,3 +45,18 @@ Per la gestione dei turni dei volontari (limite massimo di 2 persone per fascia)
 la scrittura esegue un controllo di conteggio lato server. Qualora due utenti inviassero la richiesta
 nello stesso istante per l'ultimo posto disponibile, la transazione del secondo utente fallirà in modo 
 controllato, eseguendo un 'rollBack()' ed emettendo un errore JSON esplicito catturato dal client.
+
+
+
+
+
+Bottone FAQ per rispettare principio Nielsen su risoluzione problemi. 
+Non è stato inserito un padding bottom al body in quanto il testo del footer è completamente visibile in ogni condizione.
+Transition in hover viene disattivata tramite media query se da preferenze utente si riducono le transizioni.
+Nel CSS .faq-botton è stata inserita una funzione per la gestione della posizione fixed utile 
+nel caso di schermi piccoli per il calcolo delle distanze
+
+
+Il contrasto dei colori nel sito supera il parametro AA del WCAG
+
+Schermi piccoli: + facile click
