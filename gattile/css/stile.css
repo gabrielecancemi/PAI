@@ -35,9 +35,17 @@ body {
     justify-content: space-between;
     gap: 2rem;
 
-    padding: 1rem 2rem;
+    padding: .6rem 1rem;
 
     background-color: var(--primario);
+
+    position: sticky;
+    top: 0;
+
+    z-index: 1000;
+
+    font-size: 1rem;
+
 }
 
 /* ==========================================================
@@ -57,7 +65,6 @@ body {
     font-size: 1.5rem;
     font-weight: bold;
 
-    transition: opacity .2s ease;
 }
 
 .logo-img {
@@ -179,7 +186,7 @@ body {
     align-items: center;
     justify-content: center;
 
-    padding: .65rem 1rem;
+    padding: .6rem .9rem;
 
     border-radius: var(--raggio);
 
@@ -218,12 +225,95 @@ body {
 
 
 /* ==========================================================
+   FOOTER
+========================================================== */
+
+.footer {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 2rem;
+
+    margin-top: 2rem;
+    padding: 2rem 1.5rem;
+
+    background-color: var(--primario);
+    color: var(--bianco);
+}
+
+.footer-sezione {
+    flex: 1 1 250px;
+}
+
+.footer h2 {
+    margin-top: 0;
+    margin-bottom: 1rem;
+
+    font-size: 1.1rem;
+}
+
+.footer p,
+.footer address,
+.footer li {
+    line-height: 1.6;
+}
+
+.footer address {
+    font-style: normal;
+}
+
+.footer ul {
+    margin: 0;
+    padding: 0;
+
+    list-style: none;
+}
+
+.footer a {
+    color: var(--bianco);
+    text-decoration: none;
+}
+
+.footer a:hover {
+    text-decoration: underline;
+}
+
+.footer-btn {
+    display: inline-block;
+
+    padding: .6rem .9rem;
+
+    border-radius: var(--raggio);
+
+    background-color: var(--secondario);
+
+    font-weight: 600;
+}
+
+.footer-btn:hover {
+    filter: brightness(1.1);
+}
+
+.copyright {
+    flex-basis: 100%;
+
+    padding-top: 1rem;
+    margin-top: 1rem;
+
+    border-top: 1px solid rgba(255,255,255,.25);
+
+    text-align: center;
+}
+
+
+
+/* ==========================================================
    ACCESSIBILITÀ
 ========================================================== */
 
 .brand-logo:focus-visible,
 .header nav a:focus-visible,
-.btn-account:focus-visible {
+.btn-account:focus-visible, .footer a:focus-visible {
     outline: 3px solid gold;
     outline-offset: 3px;
 }
@@ -256,6 +346,15 @@ body {
         justify-content: center;
 
         order: 3;
+    }
+
+    .footer {
+        justify-content: center;
+    }
+
+    .footer-sezione {
+        flex: 1 0 100%;
+        text-align: center;
     }
 }
 
@@ -296,6 +395,10 @@ body {
     .logo-img {
         width: 40px;
         height: 40px;
+    }
+
+    .footer {
+        padding: 1.5rem 1rem;
     }
 }
 
