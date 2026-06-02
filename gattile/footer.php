@@ -1,82 +1,75 @@
+
 <footer class="footer">
-    <section class="footer-sezione" aria-labelledby="footer-info">
-        <h2 id="footer-info">Gattile San Paolo</h2>
 
-        <p>
-            Rifugio dedicato all'accoglienza, alla cura e
-            all'adozione responsabile dei gatti.
-        </p>
+    <a href="index.php" class="brand-logo" aria-label="Torna alla Home Page">
 
-        <address>
-            Via San Paolo 100, Torino<br>
-            Tel: <a href="tel:+390111234567">011 1234567</a><br>
-            Email:
-            <a href="mailto:info@gattilesanpaolo.it">
-                info@gattilesanpaolo.it
-            </a>
-        </address>
-    </section>
+        <img src="img/logo.png" alt="" class="logo-img">
 
-    <nav class="footer-sezione" aria-label="Link utili del sito">
+        <strong>Gattile San Paolo</strong>
+    </a>
 
-        <h2>Link utili</h2>
-
+    <nav aria-label="Menu principale di navigazione">
         <ul>
-            <li><a href="index.php">Home</a></li>
-            <li><a href="adozioni.php">Adotta un gatto</a></li>
-            <li><a href="volontariato.php">Diventa Volontario</a></li>
+            <li><a href="index.php" class="<?= $currentPage === 'index.php' ? 'active' : '' ?>">Home</a></li>
 
+            <li><a href="adozioni.php" class="<?= $currentPage === 'adozioni.php' ? 'active' : '' ?>">
+                    Adotta un gatto
+                </a></li>
+            <li><a href="volontariato.php" class="<?= $currentPage === 'volontariato.php' ? 'active' : '' ?>">
+                    Diventa Volontario
+                </a></li>
             <?php if (!empty($_SESSION['is_admin'])): ?>
-                <li>
-                    <a href="inserimento.php">
+                <li><a href="inserimento.php" class="<?= $currentPage === 'inserimento.php' ? 'active' : '' ?>">
                         Aggiungi Gatto
-                    </a>
-                </li>
+                    </a></li>
             <?php endif; ?>
         </ul>
     </nav>
 
-    <section class="footer-sezione" aria-labelledby="footer-account">
+    <section class="footer-info">
 
-        <h2 id="footer-account">Account</h2>
+        <address>
+
+            <strong>Contatti</strong><br>
+
+            Via San Paolo 100, Torino<br>
+
+            <a href="tel:+390111234567">
+                011 1234567
+            </a><br>
+
+            <a href="mailto:info@gattilesanpaolo.it">
+                info@gattilesanpaolo.it
+            </a>
+
+        </address>
 
         <?php if (isset($_SESSION['username'])): ?>
 
-            <p>
-                Accesso effettuato come
+            <p class="utente-info">
+                👤
                 <strong><?= $_SESSION['username'] ?></strong>
+
+                <?php if (!empty($_SESSION['is_admin'])): ?>
+                    <small class="badge-gatto">
+                        Amministratore
+                    </small>
+                <?php else: ?>
+                    <small class="badge-gatto">
+                        Utente
+                    </small>
+                <?php endif; ?>
             </p>
-
-            <p>
-                <a href="logout.php" class="footer-btn">
-                    Logout
-                </a>
-            </p>
-
-        <?php else: ?>
-
-            <p>Non hai effettuato l'accesso.</p>
-
-            <ul>
-                <li>
-                    <a href="login.php">
-                        Accedi
-                    </a>
-                </li>
-                <li>
-                    <a href="registrazione.php">
-                        Registrati
-                    </a>
-                </li>
-            </ul>
 
         <?php endif; ?>
+
     </section>
 
-    <small class="copyright">
-        © <?= date('Y') ?> Gattile San Paolo —
-        Tutti i diritti riservati.
+    <small class="footer-copy">
+        © <?= date('Y') ?> Gattile San Paolo ·
+        Tutti i diritti riservati
     </small>
+
 </footer>
 <script src="js/validazione.js"></script>
 <script src="js/volontariato.js"></script>

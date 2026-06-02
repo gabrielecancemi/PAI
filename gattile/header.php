@@ -32,14 +32,19 @@ $pageTitle = $pageTitles[$currentPage] ?? 'Gattile ';
     <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
     <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script src="js/menu.js" defer></script>
 </head>
 
 <body>
     <header class="header" role="banner">
+
         <a href="index.php" class="brand-logo" aria-label="Torna alla Home Page">
             <img src="img/logo.png" alt="" class="logo-img">
             <p for="brand-logo">Gattile San Paolo</p>
         </a>
+        <button class="menu-toggle" aria-expanded="false" aria-controls="menu-principale" aria-label="Apri menu">
+            ☰
+        </button>
         <nav aria-label="Menu principale di navigazione">
             <ul>
                 <li><a href="index.php" class="<?= $currentPage === 'index.php' ? 'active' : '' ?>">Home</a></li>
@@ -58,42 +63,45 @@ $pageTitle = $pageTitles[$currentPage] ?? 'Gattile ';
             </ul>
         </nav>
         <section class="stato-autenticazione" id="userStatusBox">
-            <?php if (isset($_SESSION['username'])): ?>
-                <p class="utente-info">
-                    👤
-                    <strong><?= $_SESSION['username'] ?></strong>
-                    <?php if (!empty($_SESSION['is_admin'])): ?>
-                        <small class="badge-gatto">Amministratore</small>
-                    <?php else: ?>
-                        <small class="badge-gatto">Utente</small>
-                    <?php endif; ?>
-                </p>
-                <ul class="azioni-account">
-                    <li>
-                        <a href="logout.php" class="btn-account btn-logout">
-                            Logout
-                        </a>
-                    </li>
-                </ul>
-            <?php else: ?>
-                <p class="utente-info">
-                    Stato:
-                    <em>non loggato</em>
-                </p>
-                <ul class="azioni-account">
-                    <li>
-                        <a href="login.php"
-                            class="btn-account btn-login <?= $currentPage === 'login.php' ? 'active' : '' ?>">
-                            Accedi
-                        </a>
-                    </li>
-                    <li>
-                        <a href="registrazione.php"
-                            class="btn-account btn-login <?= $currentPage === 'registrazione.php' ? 'active' : '' ?>">
-                            Registrati
-                        </a>
-                    </li>
-                </ul>
-            <?php endif; ?>
+            <article class="account-box">
+                <?php if (isset($_SESSION['username'])): ?>
+                    <p class="utente-info">
+                        👤
+                        <strong><?= $_SESSION['username'] ?></strong>
+                        <?php if (!empty($_SESSION['is_admin'])): ?>
+                            <small class="badge-gatto">Amministratore</small>
+                        <?php else: ?>
+                            <small class="badge-gatto">Utente</small>
+                        <?php endif; ?>
+                    </p>
+                    <ul class="azioni-account">
+                        <li>
+                            <a href="logout.php" class="btn-account btn-logout">
+                                Logout
+                            </a>
+                        </li>
+                    </ul>
+                <?php else: ?>
+                    <p class="utente-info">
+                        Stato:
+                        <em>non loggato</em>
+                    </p>
+                    <ul class="azioni-account">
+                        <li>
+                            <a href="login.php"
+                                class="btn-account btn-login <?= $currentPage === 'login.php' ? 'active' : '' ?>">
+                                Accedi
+                            </a>
+                        </li>
+                        <li>
+                            <a href="registrazione.php"
+                                class="btn-account btn-login <?= $currentPage === 'registrazione.php' ? 'active' : '' ?>">
+                                Registrati
+                            </a>
+                        </li>
+                    </ul>
+                <?php endif; ?>
+            </article>
+
         </section>
     </header>
