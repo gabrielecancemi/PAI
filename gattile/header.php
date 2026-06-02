@@ -28,6 +28,7 @@ $pageTitle = $pageTitles[$currentPage] ?? 'Gattile ';
     <meta name="keywords" content="gattile, rifugio, adozioni, gatti, volontariato">
     <title><?= $pageTitle ?></title>
     <link rel="stylesheet" href="css/stile.css">
+    <link rel="icon" href="img/logo.png" type="image/png">
     <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
     <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
@@ -35,7 +36,10 @@ $pageTitle = $pageTitles[$currentPage] ?? 'Gattile ';
 
 <body>
     <header class="header" role="banner">
-        <a href="index.php" class="brand-logo" aria-label="Torna alla Home Page">Gattile Rifugio</a>
+        <a href="index.php" class="brand-logo" aria-label="Torna alla Home Page">
+            <img src="img/logo.png" alt="" class="logo-img">
+            <label for="brand-logo">Gattile San Paolo</label>
+        </a>
         <nav aria-label="Menu principale di navigazione">
             <ul>
                 <li><a href="index.php" class="<?= $currentPage === 'index.php' ? 'active' : '' ?>">Home</a></li>
@@ -43,11 +47,9 @@ $pageTitle = $pageTitles[$currentPage] ?? 'Gattile ';
                 <li><a href="adozioni.php" class="<?= $currentPage === 'adozioni.php' ? 'active' : '' ?>">
                         Adotta un gatto
                     </a></li>
-
                 <li><a href="volontariato.php" class="<?= $currentPage === 'volontariato.php' ? 'active' : '' ?>">
                         Diventa Volontario
                     </a></li>
-
                 <?php if (!empty($_SESSION['is_admin'])): ?>
                     <li><a href="inserimento.php" class="<?= $currentPage === 'inserimento.php' ? 'active' : '' ?>">
                             Aggiungi Gatto
@@ -73,9 +75,8 @@ $pageTitle = $pageTitles[$currentPage] ?? 'Gattile ';
                         </a>
                     </li>
                 </ul>
-
             <?php else: ?>
-                <p>
+                <p class="utente-info">
                     Stato:
                     <em>non loggato</em>
                 </p>
@@ -93,8 +94,6 @@ $pageTitle = $pageTitles[$currentPage] ?? 'Gattile ';
                         </a>
                     </li>
                 </ul>
-
             <?php endif; ?>
-
         </section>
     </header>

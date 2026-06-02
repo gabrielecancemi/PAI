@@ -11,87 +11,18 @@
     --nero: black;
 
     --raggio: .5rem;
-    --ombra: 0 2px 8px rgba(0,0,0,.15);
-    --transizione: .2s ease;
 }
 
 /* ==========================================================
-   RESET
+   GENERALI
 ========================================================== */
-
-*,
-*::before,
-*::after {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-}
-
-html {
-    scroll-behavior: smooth;
-}
 
 body {
-    min-height: 100vh;
-
-    font-family: Arial, Helvetica, sans-serif;
-    line-height: 1.6;
-
-    background: var(--sfondo);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: var(--sfondo);
     color: var(--nero);
-
-    display: flex;
-    flex-direction: column;
-}
-
-/* ==========================================================
-   ACCESSIBILITÀ
-========================================================== */
-
-a:focus-visible,
-button:focus-visible,
-input:focus-visible,
-textarea:focus-visible,
-select:focus-visible {
-    outline: 3px solid var(--secondario);
-    outline-offset: 2px;
-}
-
-@media (prefers-reduced-motion: reduce) {
-
-    * {
-        animation: none !important;
-        transition: none !important;
-        scroll-behavior: auto !important;
-    }
-}
-
-/* ==========================================================
-   ELEMENTI BASE
-========================================================== */
-
-img {
-    max-width: 100%;
-    height: auto;
-    display: block;
-}
-
-a {
-    color: inherit;
-}
-
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-    color: var(--primario);
-    margin-bottom: .75rem;
-}
-
-p {
-    margin-bottom: 1rem;
+    margin: 0;
+    padding-bottom: .5rem;
 }
 
 /* ==========================================================
@@ -99,68 +30,94 @@ p {
 ========================================================== */
 
 .header {
-    background: var(--primario);
-    color: var(--bianco);
-
-    padding: 1rem;
-
     display: flex;
-    flex-direction: column;
-    gap: 1rem;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2rem;
 
-    box-shadow: var(--ombra);
+    padding: 1rem 2rem;
+
+    background-color: var(--primario);
 }
 
+/* ==========================================================
+   LOGO
+========================================================== */
+
 .brand-logo {
-    text-decoration: none;
+    flex: 1;
+
+    display: flex;
+    align-items: center;
+    gap: .75rem;
 
     color: var(--bianco);
 
-    font-size: 1.6rem;
+    text-decoration: none;
+    font-size: 1.5rem;
     font-weight: bold;
 
-    text-align: center;
+    transition: opacity .2s ease;
+}
+
+.logo-img {
+    width: 48px;
+    height: 48px;
+
+    object-fit: contain;
+
+    flex-shrink: 0;
 }
 
 .brand-logo:hover {
-    opacity: .9;
+    opacity: .85;
 }
 
 /* ==========================================================
    NAVIGAZIONE
 ========================================================== */
 
-.header nav ul {
-    list-style: none;
-
+.header nav {
+    flex: 2;
     display: flex;
-    flex-direction: column;
+    justify-content: center;
+}
 
-    gap: .5rem;
+.header nav ul {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+
+    margin: 0;
+    padding: 0;
+
+    list-style: none;
 }
 
 .header nav a {
-    display: block;
+    display: inline-block;
 
+    padding: .6rem .9rem;
+
+    color: var(--bianco);
     text-decoration: none;
-
-    text-align: center;
-
-    padding: .75rem 1rem;
+    font-weight: 600;
 
     border-radius: var(--raggio);
 
-    transition: var(--transizione);
+    transition:
+        background-color .2s ease,
+        color .2s ease;
 }
 
 .header nav a:hover {
-    background: var(--secondario);
+    background-color: rgba(255, 255, 255, .15);
 }
 
-.header nav a.active {
-    background: var(--secondario);
-
-    font-weight: bold;
+.header nav a.active,
+.btn-login.active {
+    background-color: var(--secondario);
+    color: var(--bianco);
 }
 
 /* ==========================================================
@@ -168,459 +125,200 @@ p {
 ========================================================== */
 
 .stato-autenticazione {
-    background: var(--bianco);
-    color: var(--nero);
-
-    border-radius: var(--raggio);
-
-    padding: 1rem;
+    flex: 1;
 
     display: flex;
-    flex-direction: column;
-    gap: .75rem;
-}
+    align-items: center;
+    justify-content: flex-end;
+    gap: 1rem;
 
-.stato-autenticazione p {
-    margin: 0;
+    background-color: var(--bianco);
+
+    padding: .75rem 1rem;
+
+    border-radius: .75rem;
+
+    box-shadow:
+        0 2px 8px rgba(0, 0, 0, .12);
+
+    min-height: 60px;
 }
 
 .utente-info {
     display: flex;
     align-items: center;
     gap: .5rem;
-    flex-wrap: wrap;
-}
 
-.utente-info strong {
-    color: var(--primario);
+    margin: 0;
 }
 
 .badge-gatto {
-    background: var(--secondario);
-    color: var(--bianco);
+    padding: .25rem .6rem;
 
-    padding: .2rem .6rem;
+    background-color: var(--secondario);
+    color: var(--bianco);
 
     border-radius: 999px;
 
     font-size: .8rem;
-    font-weight: bold;
+    font-weight: 600;
 }
 
 /* ==========================================================
-   PULSANTI ACCOUNT
+   LISTA AZIONI ACCOUNT
 ========================================================== */
 
 .azioni-account {
-    list-style: none;
-
     display: flex;
-    flex-wrap: wrap;
+    align-items: center;
+    gap: .75rem;
 
-    gap: .5rem;
+    margin: 0;
+    padding: 0;
+
+    list-style: none;
 }
 
-.btn-account {
-    display: inline-block;
+/* ==========================================================
+   BOTTONI
+========================================================== */
 
-    text-decoration: none;
+.btn-account {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
 
     padding: .65rem 1rem;
 
     border-radius: var(--raggio);
 
-    font-weight: bold;
+    text-decoration: none;
+    font-weight: 600;
 
-    transition: var(--transizione);
+    transition:
+        background-color .2s ease,
+        color .2s ease,
+        transform .15s ease,
+        box-shadow .2s ease;
 }
+
+/* Login e Registrazione */
 
 .btn-login {
-    background: var(--bianco);
-
-    color: var(--primario);
-
-    border: 2px solid var(--primario);
-}
-
-.btn-register {
-    background: var(--secondario);
+    background-color: var(--primario);
     color: var(--bianco);
 }
+
+.btn-login:hover {
+    filter: brightness(1.1);
+}
+
+/* Logout */
 
 .btn-logout {
-    background: var(--primario);
+    background-color: #b22222;
     color: var(--bianco);
 }
 
-.btn-account:hover {
-    filter: brightness(110%);
+.btn-logout:hover {
+    background-color: #8b0000;
 }
 
-.btn-account.active {
-    outline: 3px solid var(--secondario);
-    outline-offset: 2px;
+
+
+/* ==========================================================
+   ACCESSIBILITÀ
+========================================================== */
+
+.brand-logo:focus-visible,
+.header nav a:focus-visible,
+.btn-account:focus-visible {
+    outline: 3px solid gold;
+    outline-offset: 3px;
 }
 
 /* ==========================================================
-   CONTENUTO
+   RESPONSIVE TABLET
 ========================================================== */
 
-.contenuto-principale {
-    flex: 1;
-
-    width: 100%;
-    max-width: 1200px;
-
-    margin: 2rem auto;
-
-    padding: 0 1rem;
-}
-
-/* ==========================================================
-   FORM
-========================================================== */
-
-.box-formulario {
-    background: var(--bianco);
-
-    padding: 2rem;
-
-    border-radius: var(--raggio);
-
-    max-width: 700px;
-
-    margin: auto;
-}
-
-.box-formulario.broad {
-    max-width: 900px;
-}
-
-.campo-form {
-    margin-bottom: 1rem;
-}
-
-.campo-form label {
-    display: block;
-
-    margin-bottom: .4rem;
-
-    font-weight: bold;
-}
-
-.campo-form input,
-.campo-form textarea,
-.campo-form select {
-    width: 100%;
-
-    padding: .75rem;
-
-    border: 1px solid var(--primario);
-
-    border-radius: var(--raggio);
-
-    font-size: 1rem;
-}
-
-textarea {
-    min-height: 120px;
-    resize: vertical;
-}
-
-.opzione-checkbox {
-    display: flex;
-    gap: .5rem;
-    align-items: center;
-}
-
-/* ==========================================================
-   BOTTONI GENERICI
-========================================================== */
-
-button,
-.btn {
-    background: var(--secondario);
-    color: var(--bianco);
-
-    border: none;
-
-    border-radius: var(--raggio);
-
-    padding: .75rem 1.25rem;
-
-    font-weight: bold;
-
-    cursor: pointer;
-
-    transition: var(--transizione);
-}
-
-button:hover,
-.btn:hover {
-    filter: brightness(110%);
-}
-
-/* ==========================================================
-   ADOZIONI
-========================================================== */
-
-.adozioni-layout {
-    display: grid;
-    grid-template-columns: 2fr 1fr;
-    gap: 2rem;
-}
-
-.prenotazione-sezione {
-    background: var(--bianco);
-
-    border-radius: var(--raggio);
-
-    padding: 1.5rem;
-}
-
-/* ==========================================================
-   FILTRI
-========================================================== */
-
-.barra-filtri-catalogo {
-    display: flex;
-    gap: 1rem;
-
-    margin-bottom: 2rem;
-}
-
-.input-ricerca-libera {
-    flex: 2;
-}
-
-.selettore-ordinamento {
-    flex: 1;
-}
-
-/* ==========================================================
-   GRIGLIA GATTI
-========================================================== */
-
-.griglia-schede-gatti {
-    list-style: none;
-
-    display: grid;
-
-    grid-template-columns:
-        repeat(auto-fill,minmax(250px,1fr));
-
-    gap: 1.5rem;
-}
-
-.card-gatto-interattiva {
-    background: var(--bianco);
-
-    border: 2px solid var(--primario);
-
-    border-radius: var(--raggio);
-
-    padding: 1rem;
-
-    transition: var(--transizione);
-}
-
-.card-gatto-interattiva:hover {
-    transform: translateY(-4px);
-}
-
-.card-gatto-interattiva.stato-selezionato {
-    border-color: var(--secondario);
-}
-
-.icona-felino-avatar {
-    width: 60px;
-    height: 60px;
-
-    border-radius: 50%;
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    margin: 0 auto 1rem;
-
-    background: var(--sfondo);
-
-    font-size: 2rem;
-}
-
-.specifiche-tecniche-gatto {
-    margin-top: 1rem;
-
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-
-    gap: .5rem;
-}
-
-.etichetta-stato {
-    font-weight: bold;
-}
-
-.etichetta-stato.disponibile {
-    color: var(--secondario);
-}
-
-.etichetta-stato.esaurito {
-    color: var(--primario);
-}
-
-/* ==========================================================
-   NOTIFICHE
-========================================================== */
-
-.notifica {
-    background: var(--bianco);
-
-    border-left: 5px solid var(--secondario);
-
-    padding: 1rem;
-
-    margin-bottom: 1rem;
-
-    border-radius: var(--raggio);
-}
-
-/* ==========================================================
-   TABELLE
-========================================================== */
-
-table {
-    width: 100%;
-
-    border-collapse: collapse;
-
-    background: var(--bianco);
-}
-
-th {
-    background: var(--primario);
-    color: var(--bianco);
-}
-
-th,
-td {
-    border: 1px solid var(--primario);
-    padding: .75rem;
-    text-align: left;
-}
-
-/* ==========================================================
-   FOOTER
-========================================================== */
-
-.piede-pagina {
-    background: var(--primario);
-    color: var(--bianco);
-
-    text-align: center;
-
-    padding: 1.5rem;
-
-    margin-top: auto;
-}
-
-/* ==========================================================
-   TABLET
-========================================================== */
-
-@media (min-width: 768px) {
+@media (max-width: 900px) {
 
     .header {
-        display: grid;
-
-        grid-template-columns:
-            auto
-            1fr
-            auto;
-
-        align-items: center;
-
-        gap: 2rem;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 1rem;
     }
 
     .brand-logo {
-        text-align: left;
+        flex: 0 0 100%;
+        text-align: center;
+    }
+
+    .header nav {
+        flex: 1 0 100%;
+        order: 2;
+    }
+
+    .stato-autenticazione {
+        flex: 1 0 100%;
+
+        justify-content: center;
+
+        order: 3;
+    }
+}
+
+/* ==========================================================
+   RESPONSIVE MOBILE
+========================================================== */
+
+@media (max-width: 600px) {
+
+    .header {
+        flex-direction: column;
+        align-items: center;
     }
 
     .header nav ul {
-        flex-direction: row;
+        flex-direction: column;
+        gap: .8rem;
+    }
+
+    .stato-autenticazione {
+        flex-direction: column;
+
+        gap: .8rem;
+
+        text-align: center;
+    }
+
+    .azioni-account {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .utente-info {
         justify-content: center;
         flex-wrap: wrap;
     }
 
-    .stato-autenticazione {
-        min-width: 250px;
+    .logo-img {
+        width: 40px;
+        height: 40px;
     }
 }
 
 /* ==========================================================
-   MOBILE
+   RIDUZIONE ANIMAZIONI
 ========================================================== */
 
-@media (max-width: 768px) {
+@media (prefers-reduced-motion: reduce) {
 
-    .adozioni-layout {
-        grid-template-columns: 1fr;
-    }
-
-    .barra-filtri-catalogo {
-        flex-direction: column;
-    }
-
-    .specifiche-tecniche-gatto {
-        grid-template-columns: 1fr;
-    }
-}
-
-@media (max-width: 480px) {
-
-    .azioni-account {
-        flex-direction: column;
-    }
-
-    .azioni-account li {
-        width: 100%;
-    }
-
-    .btn-account {
-        display: block;
-        text-align: center;
-    }
-}
-
-/* ==========================================================
-   STAMPA
-========================================================== */
-
-@media print {
-
-    .header,
-    .stato-autenticazione,
-    .azioni-account,
-    button,
-    .barra-filtri-catalogo,
-    .prenotazione-sezione {
-        display: none !important;
-    }
-
-    body {
-        background: white;
-        color: black;
-    }
-
-    a {
-        color: black;
-        text-decoration: underline;
-    }
-
-    .card-gatto-interattiva {
-        page-break-inside: avoid;
-        border: 1px solid black;
+    *,
+    *::before,
+    *::after {
+        animation: none !important;
+        transition: none !important;
+        scroll-behavior: auto !important;
     }
 }
