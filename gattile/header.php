@@ -38,7 +38,7 @@ $pageTitle = $pageTitles[$currentPage] ?? 'Gattile ';
     <header class="header" role="banner">
         <a href="index.php" class="brand-logo" aria-label="Torna alla Home Page">
             <img src="img/logo.png" alt="" class="logo-img">
-            <label for="brand-logo">Gattile San Paolo</label>
+            <p for="brand-logo">Gattile San Paolo</p>
         </a>
         <nav aria-label="Menu principale di navigazione">
             <ul>

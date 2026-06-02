@@ -13,8 +13,62 @@ try {
 
 <main class="contenuto-principale">
     <section class="presentazione-struttura">
-        <h1>Benvenuti al Gattile Municipale</h1>
-        <p>Ogni anno, centinaia di gatti vengono abbandonati o nascono in strada, necessitando di cure e di una famiglia. Questo sito nasce per facilitare le adozioni e organizzare il supporto attivo alla struttura ospitante attraverso turni coordinati e visite guidate.</p>
+        <h1>Benvenuti al Gattile San Paolo</h1>
+        <p>Ogni anno, centinaia di gatti vengono abbandonati o nascono in strada, necessitando di cure e di una
+            famiglia. Questo sito nasce per facilitare le adozioni e organizzare il supporto attivo alla struttura
+            ospitante attraverso turni coordinati e visite guidate.</p>
+    </section>
+    <section class="azioni-principali" aria-label="Azioni principali">
+        <a href="adozioni.php" class="btn-home">
+            Adotta un gatto
+        </a>
+
+        <a href="volontariato.php" class="btn-home">
+            Diventa volontario
+        </a>
+    </section>
+
+    <section class="funzionalita-sito" aria-labelledby="titolo-funzionalita">
+
+        <h2 id="titolo-funzionalita">
+            Cosa puoi fare sul sito
+        </h2>
+
+        <ul class="griglia-funzionalita">
+
+            <li>
+                <article class="card-funzionalita">
+                    <h3>🐱 Adozioni</h3>
+
+                    <p>
+                        Consulta i gatti presenti in struttura e scopri quali sono pronti per essere accolti in una
+                        nuova famiglia.
+                    </p>
+                </article>
+            </li>
+
+            <li>
+                <article class="card-funzionalita">
+                    <h3>🤝 Volontariato</h3>
+
+                    <p>
+                        Partecipa alle attività del gattile offrendo il tuo aiuto ai volontari e agli operatori.
+                    </p>
+                </article>
+            </li>
+
+            <li>
+                <article class="card-funzionalita">
+                    <h3>🆕 Nuovi arrivi</h3>
+
+                    <p>
+                        Rimani aggiornato sugli ultimi gatti accolti dalla struttura.
+                    </p>
+                </article>
+            </li>
+
+        </ul>
+
     </section>
 
     <section class="sezione-nuovi-arrivi" aria-labelledby="titolo-nuovi-arrivi">
