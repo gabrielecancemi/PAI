@@ -54,7 +54,7 @@ body {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 2rem;
+    column-gap: 2rem;
     flex-wrap: wrap;
     margin-top: 2rem;
     padding: .6rem 1rem;
@@ -112,12 +112,9 @@ body {
     list-style: none;
 }
 
-.header nav ul {
-    align-items: center;
-}
-
+.header nav ul,
 .footer nav ul {
-    flex-wrap: wrap;
+    align-items: center;
 }
 
 .header nav a,
@@ -255,17 +252,13 @@ body {
 
 .footer-info {
     flex: 1;
-
     display: flex;
     flex-direction: column;
-
     gap: .75rem;
-
     min-width: 0;
 }
 
 .footer-info address {
-    font-style: normal;
     line-height: 1.6;
 }
 
@@ -284,12 +277,10 @@ body {
 
 .footer-copy {
     flex-basis: 100%;
-
     padding-top: 1rem;
-
     text-align: center;
-
     border-top: 1px solid rgba(255, 255, 255, .15);
+    font-size: .8rem;
 }
 
 /* ==========================================================
@@ -369,6 +360,7 @@ body {
     .footer {
         justify-content: center;
         text-align: center;
+        gap: 1rem;
     }
 
     .footer nav {
@@ -377,7 +369,6 @@ body {
 
     .footer-info {
         flex: 1 0 100%;
-
         align-items: center;
     }
 }
@@ -389,7 +380,8 @@ body {
 @media (max-width: 600px) {
 
     .header {
-        flex-direction: column;
+        flex-direction: row;
+        flex-wrap: wrap;
         align-items: center;
     }
 
@@ -434,11 +426,13 @@ body {
 
     .menu-toggle {
         display: block;
+        flex-shrink: 0;
     }
 
     .header nav,
     .stato-autenticazione {
         display: none;
+        flex: 0 0 100%;
     }
 
     .header nav.aperto,
@@ -453,6 +447,10 @@ body {
 
     .stato-autenticazione.aperto {
         width: 100%;
+    }
+
+    .brand-logo {
+        flex: 1;
     }
 
     .faq-button {

@@ -1,4 +1,3 @@
-
 <footer class="footer">
 
     <a href="index.php" class="brand-logo" aria-label="Torna alla Home Page">
@@ -44,7 +43,7 @@
 
         </address>
 
-        <?php if (isset($_SESSION['username'])): ?>
+        <!--<?php if (isset($_SESSION['username'])): ?>
 
             <p class="utente-info">
                 👤
@@ -61,21 +60,21 @@
                 <?php endif; ?>
             </p>
 
-        <?php endif; ?>
+        <?php endif; ?>-->
 
     </section>
 
-    <small class="footer-copy">
-        © <?= date('Y') ?> Gattile San Paolo ·
-        Tutti i diritti riservati
-    </small>
+    <p class="footer-copy">
+        &copy;
+        <time datetime="<?= date('Y') ?>">
+            <?= date('Y') ?>
+        </time>
+        Gattile San Paolo · Tutti i diritti riservati
+    </p>
 
 </footer>
 
-<a href="faq.php"
-   class="faq-button"
-   aria-label="Domande frequenti"
-   title="Domande frequenti">
+<a href="faq.php" class="faq-button" aria-label="Domande frequenti" title="Domande frequenti">
     ?
 </a>
 

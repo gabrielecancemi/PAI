@@ -1,0 +1,105 @@
+# Gattile - Security Configuration File (.htaccess)
+# Utilizzato per configurare header di sicurezza e rewrite rules
+
+# Abilita mod_rewrite
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteBase /PAI/prova/
+    
+    # Reindirizza HTTP a HTTPS (in produzione)
+    # RewriteCond %{HTTPS} off
+    # RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+    
+    # Prevent access to hidden files/folders
+    RewriteRule "^\." - [F]
+    
+    # Blocca accesso diretto a includes
+    RewriteRule "^includes/" - [F]
+    RewriteRule "^data/" - [F]
+</IfModule>
+
+# Security Headers
+<IfModule mod_headers.c>
+    # Previeni clickjacking
+    Header always set X-Frame-Options "SAMEORIGIN"
+    
+    # Previeni MIME type sniffing
+    Header always set X-Content-Type-Options "nosniff"
+    
+    # Abilita XSS protection
+    Header always set X-XSS-Protection "1; mode=block"
+    
+    # Content Security Policy (strict)
+    Header always set Content-Security-Policy "default-src 'self'; script-src 'self' 'unsafe-inline' https://unpkg.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; font-src 'self'; connect-src 'self'; frame-ancestors 'self';"
+    
+    # Referrer Policy
+    Header always set Referrer-Policy "strict-origin-when-cross-origin"
+    
+    # Feature Policy (Permissions Policy)
+    Header always set Permissions-Policy "geolocation=(), microphone=(), camera=(), payment=()"
+    
+    # HSTS (in produzione, rimuovere per sviluppo)
+    # Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains; preload"
+</IfModule>
+
+# Compressione gzip
+<IfModule mod_deflate.c>
+    AddOutputFilterByType DEFLATE text/plain
+    AddOutputFilterByType DEFLATE text/html
+    AddOutputFilterByType DEFLATE text/xml
+    AddOutputFilterByType DEFLATE text/css
+    AddOutputFilterByType DEFLATE text/javascript
+    AddOutputFilterByType DEFLATE application/xml
+    AddOutputFilterByType DEFLATE application/xhtml+xml
+    AddOutputFilterByType DEFLATE application/rss+xml
+    AddOutputFilterByType DEFLATE application/javascript
+    AddOutputFilterByType DEFLATE application/x-javascript
+    AddOutputFilterByType DEFLATE application/json
+</IfModule>
+
+# Caching
+<IfModule mod_expires.c>
+    ExpiresActive On
+    
+    # HTML files (no cache)
+    ExpiresByType text/html "access plus 0 seconds"
+    
+    # CSS (cache 1 year)
+    ExpiresByType text/css "access plus 1 year"
+    
+    # JavaScript (cache 1 year)
+    ExpiresByType application/javascript "access plus 1 year"
+    ExpiresByType application/x-javascript "access plus 1 year"
+    
+    # Images (cache 1 year)
+    ExpiresByType image/svg+xml "access plus 1 year"
+    ExpiresByType image/png "access plus 1 year"
+    ExpiresByType image/jpeg "access plus 1 year"
+    ExpiresByType image/jpg "access plus 1 year"
+    ExpiresByType image/gif "access plus 1 year"
+    
+    # Fonts (cache 1 year)
+    ExpiresByType font/ttf "access plus 1 year"
+    ExpiresByType font/otf "access plus 1 year"
+    ExpiresByType font/woff "access plus 1 year"
+    ExpiresByType font/woff2 "access plus 1 year"
+</IfModule>
+
+# Configura charset
+AddCharset UTF-8 .html .css .php .js .txt .xml
+
+# Blocca accesso a file sensibili
+<FilesMatch "\.(env|json|txt|sql|bak)$">
+    Order allow,deny
+    Deny from all
+</FilesMatch>
+
+# Disabilita directory listing
+<IfModule mod_autoindex.c>
+    Options -Indexes
+</IfModule>
+
+# Timeout connessioni
+<IfModule mod_reqtimeout.c>
+    RequestReadTimeout header=20-40,MinRate=500 body=20,MinRate=500
+</IfModule>
